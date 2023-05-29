@@ -28,7 +28,7 @@ public class User implements Serializable {
     private String username;
 
     @Column(unique = true)
-    private String snn;
+    private String ssn;
 
     private String name;
 
