@@ -75,25 +75,23 @@ public class ContactMessageService {
                 .build();
     }
 
-    //Not: getAll() *******************************************************************************
+    // Not: getAll() methodu **********************************************************************
     public Page<ContactMessageResponse> getAll(int page, int size, String sort, String type) {
 
         Pageable pageable = PageRequest.of(page,size, Sort.by(sort).ascending());
 
-        if (Objects.equals(type,"desc")){
+        if(Objects.equals(type, "desc")) {
             pageable = PageRequest.of(page,size,Sort.by(sort).descending());
         }
 
-        return  contactMessageRepository.findAll(pageable).map(this::createResponse);
-        // return  contactMessageRepository.findAll(pageable).map(r -> createResponse(r));
+        return contactMessageRepository.findAll(pageable).map(this::createResponse);
+        // return contactMessageRepository.findAll(pageable).map(r->createResponse(r));
     }
 
-    //Not: searchByEmail() *******************************************************************************
+    // Not: searchByEmail() methodu **********************************************************************
     public Page<ContactMessageResponse> searchByEmail(String email, int page, int size, String sort, String type) {
-
         Pageable pageable =  PageRequest.of(page,size,Sort.by(sort).ascending());
-
-        if (Objects.equals(type,"desc")){
+        if(Objects.equals(type, "desc")) {
             pageable = PageRequest.of(page,size,Sort.by(sort).descending());
         }
 
@@ -101,15 +99,16 @@ public class ContactMessageService {
 
     }
 
-    //Not: searchBySubject() *******************************************************************************
+    // Not: searchBySubject() methodu **********************************************************************
     public Page<ContactMessageResponse> searchBySubject(String subject, int page, int size, String sort, String type) {
 
         Pageable pageable =  PageRequest.of(page,size,Sort.by(sort).ascending());
-
-        if (Objects.equals(type,"desc")){
+        if(Objects.equals(type, "desc")) {
             pageable = PageRequest.of(page,size,Sort.by(sort).descending());
         }
 
         return contactMessageRepository.findBySubjectEquals(subject,pageable).map(this::createResponse);
     }
+
+
 }

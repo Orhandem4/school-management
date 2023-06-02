@@ -12,4 +12,8 @@ public interface UserRoleRepository extends JpaRepository<UserRole, Integer> {
 
     @Query("select r from UserRole r where r.roleType = ?1")
     Optional<UserRole> findByERoleEquals(RoleType roleType);
+
+    @Query("select (count(r)>0) from UserRole r where r.roleType = ?1")
+    boolean existByERoleEquals(RoleType roleType);
+
 }
