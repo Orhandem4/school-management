@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
+//@MappedSuperclass
 public abstract class BaseUserResponse {
 
     private Long userId;
@@ -21,8 +22,7 @@ public abstract class BaseUserResponse {
     private String surname;
     private LocalDate birthDay;
     private String ssn;
-    private  String birthPlace;
+    private String birthPlace;
     private String phoneNumber;
     private Gender gender;
-
 }

@@ -15,7 +15,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserRoleService {
 
-
     private final UserRoleRepository userRoleRepository;
     public UserRole getUserRole(RoleType roleType) {
 
@@ -23,7 +22,7 @@ public class UserRoleService {
         return userRole.orElse(null);
     }
 
-    // Runner tarafi için gerekli method
+    // Runner tarafi icin gerekli method
     public List<UserRole> getAllUserRole() {
         return userRoleRepository.findAll();
     }
@@ -31,12 +30,11 @@ public class UserRoleService {
     // Runner tarafi icin gerekli method
     public UserRole save(RoleType roleType) {
 
-        if (userRoleRepository.existByERoleEquals(roleType)){
-            throw  new ConflictException("This role is already registered");
+        if(userRoleRepository.existsByERoleEquals(roleType)) {
+            throw new ConflictException("This role is already registered");
         }
 
         UserRole userRole = UserRole.builder().roleType(roleType).build();
         return userRoleRepository.save(userRole);
-
     }
 }

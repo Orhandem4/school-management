@@ -15,6 +15,7 @@ import java.time.LocalDate;
 public class SchoolManagementApplication implements CommandLineRunner {
 
 	private final UserRoleService userRoleService;
+
 	private final AdminService adminService;
 
 	public SchoolManagementApplication(UserRoleService userRoleService, AdminService adminService) {
@@ -29,8 +30,8 @@ public class SchoolManagementApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		// !!! Role tablomu dolduracağım
-		if (userRoleService.getAllUserRole().size()==0){
+		// !!! Role tablomu dolduracagim
+		if(userRoleService.getAllUserRole().size()==0) {
 			userRoleService.save(RoleType.ADMIN);
 			userRoleService.save(RoleType.MANAGER);
 			userRoleService.save(RoleType.ASSISTANTMANAGER);
@@ -40,8 +41,8 @@ public class SchoolManagementApplication implements CommandLineRunner {
 			userRoleService.save(RoleType.GUESTUSER);
 		}
 
-		// !!! Admin olusturulacak buil_in
-		if (adminService.countAllAdmin()==0){
+		//!!! Admin olusturulacak  built_in
+		if(adminService.countAllAdmin()==0) {
 			AdminRequest admin = new AdminRequest();
 			admin.setUsername("Admin");
 			admin.setSsn("987-99-9999");
@@ -54,5 +55,6 @@ public class SchoolManagementApplication implements CommandLineRunner {
 			admin.setBirthPlace("US");
 			adminService.save(admin);
 		}
+
 	}
 }

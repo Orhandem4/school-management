@@ -19,6 +19,4 @@ public class ContactMessageResponse implements Serializable {
     private String subject;
     private String message;
     private LocalDate date;
-
-
 }

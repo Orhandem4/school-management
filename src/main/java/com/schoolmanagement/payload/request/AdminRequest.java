@@ -1,6 +1,5 @@
 package com.schoolmanagement.payload.request;
 
-
 import com.schoolmanagement.payload.request.abstracts.BaseUserRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +12,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class AdminRequest extends BaseUserRequest {
 
-    private boolean built_in;
-
+    private  boolean built_in;
 }
