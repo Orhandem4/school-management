@@ -83,6 +83,8 @@ public class DeanService {
     // Not :  UpdateById() **********************************************
     public ResponseMessage<DeanResponse> update(DeanRequest newDean, Long deanId) {
 
+        //  checkDeanExists(deanId);  // tekrarlanan kisim icin
+
         Optional<Dean> dean = deanRepository.findById(deanId);
 
         // dean objesi bos olma kontrolu
@@ -127,12 +129,14 @@ public class DeanService {
     // Not :  Delete() ****************************************************
     public ResponseMessage<?> deleteDean(Long deanId) {
 
-        Optional<Dean> dean = deanRepository.findById(deanId);
+        checkDeanExists(deanId);  // tekrarlanan kisim icin
+
+/*        Optional<Dean> dean = deanRepository.findById(deanId);
 
         if(!dean.isPresent()) { // isEmpty() de kullanilabilir
 
             throw new ResourceNotFoundException(String.format(Messages.NOT_FOUND_USER2_MESSAGE, deanId));
-        }
+        }*/
 
         deanRepository.deleteById(deanId);
 
@@ -145,19 +149,20 @@ public class DeanService {
     // Not :  getById() ************************************************************************
     public ResponseMessage<DeanResponse> getDeanById(Long deanId) {
 
-        // ODEV : asagida goz kanatan kod grubu methoid haline cevrilip cagirilacak
 
-        Optional<Dean> dean = deanRepository.findById(deanId);
+        checkDeanExists(deanId);  // tekrarlanan kisim icin
+
+/*        Optional<Dean> dean = deanRepository.findById(deanId);
 
         if(!dean.isPresent()) { // isEmpty() de kullanilabilir
 
             throw new ResourceNotFoundException(String.format(Messages.NOT_FOUND_USER2_MESSAGE, deanId));
-        }
+        }*/
 
         return ResponseMessage.<DeanResponse>builder()
                 .message("Dean Successfully found")
                 .httpStatus(HttpStatus.OK)
-                .object(createDeanResponse(dean.get()))
+                .object(createDeanResponse(checkDeanExists(deanId).get()))
                 .build();
 
     }
@@ -181,5 +186,14 @@ public class DeanService {
 
         return deanRepository.findAll(pageable).map(this::createDeanResponse);
 
+    }
+
+    // Not: tekrarlanan kod blogu icin yazilan method
+    private Optional<Dean> checkDeanExists(Long deanId) {
+        Optional<Dean> dean = deanRepository.findById(deanId);
+        if (!dean.isPresent()) {
+            throw new ResourceNotFoundException(String.format(Messages.NOT_FOUND_USER2_MESSAGE, deanId));
+        }
+        return dean;
     }
 }

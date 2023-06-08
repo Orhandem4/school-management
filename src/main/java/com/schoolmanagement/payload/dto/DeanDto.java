@@ -3,6 +3,7 @@ package com.schoolmanagement.payload.dto;
 import com.schoolmanagement.entity.concretes.Dean;
 import com.schoolmanagement.payload.request.DeanRequest;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 @Data
 //@Component
