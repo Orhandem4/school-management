@@ -1,6 +1,7 @@
 package com.schoolmanagement.utils;
 
 import com.schoolmanagement.entity.abstracts.User;
+import com.schoolmanagement.payload.request.DeanRequest;
 import com.schoolmanagement.payload.request.abstracts.BaseUserRequest;
 
 public class CheckParameterUpdateMethod {

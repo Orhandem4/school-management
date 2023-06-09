@@ -29,7 +29,7 @@ public class Student extends User {
     @Column(unique = true)
     private String email;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST) // !!! buradaki persist kaldirilacak
     @JsonIgnore
     private AdvisorTeacher advisorTeacher;
 

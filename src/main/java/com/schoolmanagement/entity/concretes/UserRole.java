@@ -24,5 +24,4 @@ public class UserRole {
     @Column(length = 20)
     private RoleType roleType;
 
-
 }
